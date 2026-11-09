@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8fc" />
+    <meta name="description" content="《轻松记释义版》30 组考研英语词汇，按原书顺序浏览、搜索、点按发音、自动连读与标记掌握。" />
+    <title>轻松记 · 单词发音练习室</title>
+    <link rel="stylesheet" href="./app.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="轻松记，返回首页">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M5 13v6m5-11v16m5-20v24m5-16v8m5-13v18" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>
+          </span>
+          <span class="brand-text"><strong>轻松记</strong><small>WORD SOUND LAB</small></span>
+        </a>
+        <div class="topbar-right">
+          <span class="source-badge"><span class="badge-dot"></span>百度发音优先</span>
+          <button type="button" class="help-trigger" id="helpButton" aria-label="使用说明">使用说明 <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-layout" id="top">
+      <aside class="sidebar" aria-label="词表导航">
+        <div class="sidebar-top">
+          <div class="side-eyebrow">YOUR STUDY SPACE</div>
+          <div class="sidebar-title">我的词库 <span class="side-title-dot">●</span></div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-caption"><span>累计掌握</span><span id="progressFraction">0 / —</span></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+          <div class="progress-bottom"><strong id="progressPercent">0%</strong><span>一点点，积少成多</span></div>
+        </div>
+        <div class="side-section-label"><span>快捷入口</span></div>
+        <div class="quick-nav" id="quickNav">
+          <button class="quick-item" data-select="all"><span class="quick-icon">▤</span>全部词汇<span class="quick-count" id="allNavCount">—</span></button>
+          <button class="quick-item" data-select="favorites"><span class="quick-icon">☆</span>我的收藏<span class="quick-count" id="favoriteNavCount">0</span></button>
+        </div>
+        <div class="side-section-label list-section-label"><span>LIST 目录</span><span class="side-count">30 组</span></div>
+        <div class="list-nav" id="listNav" aria-label="选择单词列表"></div>
+        <div class="sidebar-footnote"><span class="footnote-icon">✳</span> 来自上传的《轻松记释义版》，释义按原文保留。</div>
+      </aside>
+
+      <main class="main-content">
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-content">
+            <div class="hero-kicker"><span class="kicker-line"></span>考研英语 · 随点随听</div>
+            <h1 id="heroTitle">把单词听进去，<br /><em>也记在心里。</em></h1>
+            <p>按原书顺序整理的完整词库。点一下就能听发音，听完一词，再记住一个。</p>
+            <div class="hero-stats">
+              <span><strong id="heroTotal">—</strong> 个词条</span><span class="hero-stat-divider"></span>
+              <span><strong>30</strong> 组 List</span><span class="hero-stat-divider"></span>
+              <span><strong>英 / 美</strong> 发音</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-halo halo-back"></div><div class="hero-halo halo-front"></div>
+            <div class="hero-sounddisc">
+              <svg viewBox="0 0 170 170" fill="none" role="presentation"><circle cx="85" cy="85" r="77" stroke="rgba(255,255,255,.24)"/><circle cx="85" cy="85" r="58" stroke="rgba(255,255,255,.28)"/><path d="M40 82v17m15-36v53m15-76v93m15-103v113m15-90v68m15-49v30m15-19v8" stroke="white" stroke-width="6" stroke-linecap="round"/></svg>
+            </div>
+            <div class="floating-label label-one">/ ˈlɜːnɪŋ /</div>
+            <div class="floating-label label-two">LISTEN & LEARN</div>
+          </div>
+        </section>
+
+        <section class="search-panel" aria-label="检索与发音设置">
+          <div class="search-field">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="search" id="searchInput" placeholder="搜索英文单词或中文释义…" autocomplete="off" aria-label="搜索英文单词或中文释义" />
+            <kbd class="search-hint" aria-hidden="true">/</kbd>
+          </div>
+          <div class="speech-controls">
+            <div class="control-label">发音</div>
+            <div class="segmented-control" role="group" aria-label="选择发音口音">
+              <button type="button" class="segment is-selected" id="accentUS" data-accent="us">美音</button>
+              <button type="button" class="segment" id="accentUK" data-accent="uk">英音</button>
+            </div>
+            <label class="speed-wrap"><span class="control-label">语速</span><select id="speedSelect" aria-label="播放语速"><option value="normal">正常</option><option value="slow">慢速</option></select></label>
+          </div>
+        </section>
+
+        <section class="study-section" aria-labelledby="sectionTitle">
+          <div class="section-topline">
+            <div><div class="section-eyebrow" id="sectionEyebrow">YOUR VOCABULARY</div><div class="section-title-line"><h2 id="sectionTitle">List 01</h2><span class="result-count" id="resultCount">加载中…</span></div></div>
+            <div class="section-actions">
+              <button class="utility-button" type="button" id="toggleMeaning" aria-pressed="false"><span id="meaningIcon">◉</span><span id="meaningLabel">隐藏释义</span></button>
+              <button class="sequence-button" type="button" id="sequenceButton"><span id="sequenceIcon">▶</span><span id="sequenceLabel">顺序播放</span></button>
+            </div>
+          </div>
+          <div class="study-subline">
+            <div class="filter-segments" role="group" aria-label="过滤掌握状态">
+              <button type="button" class="filter-button is-selected" data-filter="all">全部</button>
+              <button type="button" class="filter-button" data-filter="unmastered">待掌握</button>
+              <button type="button" class="filter-button" data-filter="mastered">已掌握</button>
+            </div>
+            <span class="current-source" id="audioStatus" role="status" aria-live="polite">点击喇叭，开始听单词</span>
+          </div>
+          <div id="wordsContainer" class="words-container">
+            <div class="loading-state"><span class="loading-spin"></span><strong>正在整理全部词汇…</strong><p>马上就能开始听读</p></div>
+          </div>
+          <div class="loadmore-wrap" id="loadmoreWrap" hidden><button type="button" id="loadMoreButton" class="loadmore-button">加载更多词条 <span>↓</span></button></div>
+          <div class="bottom-notice">音源顺序：百度翻译直连 → 设备英语语音 → 离线备用合成音（非百度）。每个词条的「百度」可打开百度翻译核对发音。</div>
+        </section>
+        <footer class="main-footer"><span>轻松记 · 每次进步一点点</span><span>收藏和掌握进度自动保存在此浏览器</span></footer>
+      </main>
+    </div>
+
+    <dialog id="helpDialog" class="help-dialog" aria-labelledby="helpTitle">
+      <div class="dialog-head"><div><div class="dialog-kicker">HOW TO USE</div><h2 id="helpTitle">使用说明</h2></div><button id="closeHelp" class="close-help" type="button" aria-label="关闭">×</button></div>
+      <div class="dialog-content">
+        <p>这里收录了你上传的《轻松记释义版》的全部词条与中文释义，按原书的 <b>30 个 List</b> 排列。</p>
+        <ul>
+          <li><strong>点「发音」：</strong>优先尝试百度翻译语音；若无法直连，先用设备英文语音，再使用随网站提供的离线备用发音。</li>
+          <li><strong>英 / 美音、快 / 慢：</strong>切换口音和速度后，再点击单词即可生效。</li>
+          <li><strong>音标：</strong>每个英文词后显示美式参考国际音标（IPA），由本地英语发音词库转换，非百度官方音标。切换英音不改变这组参考音标。</li>
+          <li><strong>顺序播放：</strong>从当前结果中的第一个词开始连读，随时可以停止。</li>
+          <li><strong>收藏、已掌握：</strong>在当前设备本地保存，下次打开仍然保留。</li>
+          <li><strong>查看百度：</strong>词条旁的「百度」将打开对应的百度翻译页面供进一步核对。</li>
+        </ul>
+        <div class="dialog-note"><strong>关于音源</strong><p>百度正式词典 / MP3 服务需要授权 API 凭证。本工具使用百度翻译旧版直连地址作优先尝试，但它不是稳定承诺。设备语音及随站提供的 CMU Flite 合成美音都属于明确标记的备用音源，不是百度录音；即使浏览器没有英语语音包，仍可尝试离线备用音频。</p></div>
+      </div>
+      <div class="dialog-footer"><a href="https://ai.baidu.com/ai-doc/MT/nkqrzmbpc" target="_blank" rel="noopener noreferrer">百度官方词典 API 说明 ↗</a><button class="dialog-done" type="button" id="doneHelp">开始学习</button></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
